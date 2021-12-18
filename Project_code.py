@@ -6,6 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics 
 #IMPORTING DATASET
 data=pd.read_csv(r"Processed_Model_Data1.csv")
@@ -56,3 +57,31 @@ print("Accuracy of Random Forest Classifier Model        \t",metrics.accuracy_sc
 print("Recall score of Random Forest Classifier Model    \t",metrics.recall_score(test_y,pred))
 print("Precision Score of Random Forest Classifier Model \t",metrics.precision_score(test_y,pred))
 print("f1 score of Random Forest Classifier Model        \t",metrics.f1_score(test_y,pred))
+#KNN CLASSIFICATION
+knn=KNeighborsClassifier(n_neighbors=7)
+knn.fit(train_x,train_y)
+pred= knn.predict(test_x)
+print("Confusion matrix of knn Model\n",metrics.confusion_matrix(test_y,pred))
+print("Accuracy of knn Model         \t",metrics.accuracy_score(test_y,pred))
+print("Recall score of knn Model     \t",metrics.recall_score(test_y,pred))
+print("Precision Score of knn Model  \t",metrics.precision_score(test_y,pred))
+print("f1 score of knn Model         \t",metrics.f1_score(test_y,pred))
+#SVM ALGORITHM
+sv = SVC(kernel='linear')
+sv.fit(train_x, train_y)
+pred= sv.predict(test_x)
+print("Confusion matrix of Support vector machine Model\n",metrics.confusion_matrix(test_y,pred))
+print("Accuracy of Support vector machine Model        \t",metrics.accuracy_score(test_y,pred))
+print("Recall score of Support vector machine Model    \t",metrics.recall_score(test_y,pred))
+print("Precision Score of Support vector machine Model \t",metrics.precision_score(test_y,pred))
+print("f1 score of Support vector machine Model        \t",metrics.f1_score(test_y,pred))
+#DECISION TREE
+from sklearn.tree import DecisionTreeClassifier
+dt= DecisionTreeClassifier()
+dt.fit(train_x, train_y)
+pred= dt.predict(test_x)
+print("Confusion matrix of Decision tree Classifier Model\n",metrics.confusion_matrix(test_y,pred))
+print("Accuracy of Decision tree Classifier Model        \t",metrics.accuracy_score(test_y,pred))
+print("Recall score of Decision tree Classifier Model    \t",metrics.recall_score(test_y,pred))
+print("Precision Score of Decision tree Classifier Model \t",metrics.precision_score(test_y,pred))
+print("f1 score of Decision tree Classifier Model        \t",metrics.f1_score(test_y,pred))
